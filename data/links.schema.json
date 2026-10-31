@@ -199,6 +199,112 @@
                 "type": "string"
               }
             }
+          },
+          "probe": {
+            "description": "由 scripts/check-links.mjs --update 写入的巡检结果。缺省表示尚未巡检。",
+            "type": "object",
+            "required": [
+              "checkedAt",
+              "health",
+              "httpStatus",
+              "finalUrl",
+              "finalHost",
+              "hostChanged",
+              "detail",
+              "backups"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "checkedAt": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              "health": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "cloudflare",
+                  "redirected",
+                  "blocked",
+                  "server-error",
+                  "notfound",
+                  "timeout",
+                  "unreachable"
+                ]
+              },
+              "httpStatus": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 100,
+                "maximum": 599
+              },
+              "finalUrl": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "finalHost": {
+                "type": "string"
+              },
+              "hostChanged": {
+                "type": "boolean"
+              },
+              "detail": {
+                "type": "string"
+              },
+              "backups": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "url",
+                    "health",
+                    "httpStatus",
+                    "finalUrl",
+                    "hostChanged"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "health": {
+                      "type": "string",
+                      "enum": [
+                        "ok",
+                        "cloudflare",
+                        "redirected",
+                        "blocked",
+                        "server-error",
+                        "notfound",
+                        "timeout",
+                        "unreachable"
+                      ]
+                    },
+                    "httpStatus": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ],
+                      "minimum": 100,
+                      "maximum": 599
+                    },
+                    "finalUrl": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "hostChanged": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

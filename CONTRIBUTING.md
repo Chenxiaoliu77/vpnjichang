@@ -10,11 +10,11 @@
 
 ### 1. 准备
 
-@@BT@@
+```bash
 git clone https://github.com/Chenxiaoliu77/vpnjichang.git
 cd vpnjichang
 git checkout -b feat/add-<名称>
-@@BT@@
+```
 
 ### 2. 在 `data/links.json` 里追加记录
 
@@ -31,21 +31,22 @@ git checkout -b feat/add-<名称>
 
 ### 3. 本地校验
 
-@@BT@@
+```bash
 node scripts/validate-links.mjs         # 结构与自洽性校验
 node scripts/render-readme.mjs          # 重新渲染 README 清单区块
 node scripts/render-readme.mjs --check   # 确认已一致
-@@BT@@
+node scripts/check-links.mjs            # 巡检新链接是否可达
+```
 
 ### 4. 提交
 
-@@BT@@
+```bash
 git add data/links.json README.md
 git commit -m "feat(links): 新增 <名称> 收录条目"
 git push origin feat/add-<名称>
-@@BT@@
+```
 
-然后开 PR。CI 会自动跑校验与渲染一致性检查。
+然后开 PR。CI 会自动跑校验、渲染一致性检查与链接巡检。
 
 ### 5. 合并后
 
@@ -56,6 +57,19 @@ git push origin feat/add-<名称>
 - **站点改了域名/链接**：更新 `url`、`urlKind`、`referralCode`、`cover`，并刷新 `verified`。
 - **站点改了套餐**：更新 `pricing`，并刷新 `verified.checkedAt`。
 - **站点没了**：把该条**移除**（不要只标「已失效」——失效条目是噪音），并在 CHANGELOG 记录移除原因。
+
+## 关于自动巡检
+
+仓库带 `scripts/check-links.mjs`，会定期探测每条链接并把结果写进 `data/links.json` 的 `probe` 字段。你不需要手动维护这个字段——它由脚本写入，README 里的可达性列也是从它渲染的。
+
+如果你在本地发现某条链接状态变了：
+
+```bash
+node scripts/check-links.mjs --update   # 刷新基线
+node scripts/render-readme.mjs          # 同步 README
+```
+
+**注意**：巡检结果受出口 IP 影响。同一站点在本地和 GitHub runner 上可能一个返回 200、另一个被 Cloudflare 拦截（记为「风控拦截」，不算失效）。所以**基线要在本地刷新**，不要在 CI runner 上自动写回。
 
 ## 核验方法建议
 

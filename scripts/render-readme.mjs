@@ -30,13 +30,39 @@ const KIND_LABEL = {
   plain: '普通链接'
 };
 
+// 与 scripts/check-links.mjs 的 HEALTH 字典保持一致
+const PROBE_ICON = {
+  'ok': '✅',
+  'cloudflare': '🛡',
+  'redirected': '↪',
+  'blocked': '⛔',
+  'server-error': '⚠',
+  'notfound': '❌',
+  'timeout': '⏱',
+  'unreachable': '❌'
+};
+
+const PROBE_LABEL = {
+  'ok': '可达',
+  'cloudflare': '风控拦截',
+  'redirected': '已跳转',
+  'blocked': '疑似访问限制',
+  'server-error': '服务端错误',
+  'notfound': '页面不存在',
+  'timeout': '请求超时',
+  'unreachable': '无法连接'
+};
+
 function renderTable() {
   const head = [
-    '| # | 名称 | 类型 | 链接形式 | 推广码 | 渠道标记 | 备用入口 |',
-    '| --- | --- | --- | --- | --- | --- | --- |'
+    '| # | 名称 | 类型 | 链接形式 | 推广码 | 渠道标记 | 备用入口 | 可达性 |',
+    '| --- | --- | --- | --- | --- | --- | --- | --- |'
   ];
   const rows = doc.links.map((l, i) => {
     const backup = l.backupUrls.length ? l.backupUrls.map((u) => '[备用](' + u + ')').join(' ') : '—';
+    const probe = l.probe
+      ? PROBE_ICON[l.probe.health] + ' ' + PROBE_LABEL[l.probe.health]
+      : '—';
     const cells = [
       String(i + 1),
       esc(l.name),
@@ -44,7 +70,8 @@ function renderTable() {
       esc(KIND_LABEL[l.urlKind] || l.urlKind),
       l.referralCode ? BT + l.referralCode + BT : '—',
       l.cover ? BT + l.cover + BT : '—',
-      backup
+      backup,
+      probe
     ];
     return '| ' + cells.join(' | ') + ' |';
   });
@@ -80,6 +107,20 @@ function renderDetails() {
     const v = l.verified;
     out.push('> 核验记录（' + v.checkedAt + '，' + v.method + '）：HTTP ' + v.httpStatus +
       (v.finalUrl ? ' → ' + v.finalUrl : '') + '。' + v.note);
+    if (l.probe) {
+      out.push('>');
+      out.push('> **自动巡检**（' + l.probe.checkedAt + '，scripts/check-links.mjs）：' +
+        PROBE_ICON[l.probe.health] + ' ' + PROBE_LABEL[l.probe.health] +
+        (l.probe.httpStatus === null ? '' : '（HTTP ' + l.probe.httpStatus + '）') +
+        (l.probe.hostChanged ? ' ⚠ 最终地址域名已变化' : '') + '。' + l.probe.detail);
+      if (l.probe.backups && l.probe.backups.length) {
+        for (const bk of l.probe.backups) {
+          out.push('>');
+          out.push('> - 备用入口 ' + bk.url + '：' + PROBE_ICON[bk.health] + ' ' + PROBE_LABEL[bk.health] +
+            (bk.httpStatus === null ? '' : '（HTTP ' + bk.httpStatus + '）'));
+        }
+      }
+    }
     out.push('');
     return out.join('\n');
   }).join('\n---\n\n');

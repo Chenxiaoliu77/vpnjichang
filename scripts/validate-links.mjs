@@ -119,6 +119,47 @@ doc.links.forEach((l, i) => {
   for (const b of l.backupUrls) {
     if (b === l.url) fail(at + '：backupUrls 与主链接重复');
   }
+
+  // probe 巡检记录（由 scripts/check-links.mjs --update 写入）
+  const HEALTHS = ['ok', 'cloudflare', 'redirected', 'blocked', 'server-error', 'notfound', 'timeout', 'unreachable'];
+  const FATAL_HEALTHS = ['notfound', 'timeout', 'unreachable'];
+  if (l.probe !== undefined) {
+    const p = l.probe;
+    if (!p || typeof p !== 'object') {
+      fail(at + '：probe 必须为对象');
+    } else {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(p.checkedAt || '')) fail(at + '：probe.checkedAt 必须是 YYYY-MM-DD');
+      if (!HEALTHS.includes(p.health)) fail(at + '：probe.health 非法：' + p.health);
+      if (p.httpStatus !== null && (!Number.isInteger(p.httpStatus) || p.httpStatus < 100 || p.httpStatus > 599)) {
+        fail(at + '：probe.httpStatus 非法');
+      }
+      if (typeof p.hostChanged !== 'boolean') fail(at + '：probe.hostChanged 必须为布尔值');
+      if (!p.detail) fail(at + '：probe.detail 缺失');
+      if (!Array.isArray(p.backups)) fail(at + '：probe.backups 必须为数组');
+      else {
+        const declared = l.backupUrls.length;
+        if (p.backups.length !== declared) {
+          fail(at + '：probe.backups 条目数（' + p.backups.length + '）与 backupUrls（' + declared + '）不一致');
+        }
+        for (const bk of p.backups) {
+          if (!HEALTHS.includes(bk.health)) fail(at + '：probe.backups.health 非法：' + bk.health);
+          if (!bk.url) fail(at + '：probe.backups 缺少 url');
+          if (!l.backupUrls.includes(bk.url)) fail(at + '：probe.backups 含未知备用地址：' + bk.url);
+        }
+      }
+      // 关键约束：Cloudflare 拦截不得被标记为致命失效
+      if (p.health === 'cloudflare' && FATAL_HEALTHS.includes(p.health)) {
+        fail(at + '：probe.health 自相矛盾');
+      }
+      if (p.health === 'cloudflare' && p.httpStatus !== null && p.httpStatus !== 403 && p.httpStatus !== 429 && p.httpStatus !== 503) {
+        fail(at + '：probe.health=cloudflare 与 httpStatus=' + p.httpStatus + ' 不一致');
+      }
+      // 致命状态必须在描述里留痕
+      if (FATAL_HEALTHS.includes(p.health) && !/失效|超时|无法连接|不存在|不可用/.test(p.detail || '')) {
+        warn(at + '：probe 记为致命状态（' + p.health + '），但 detail 未说明失效原因');
+      }
+    }
+  }
 });
 
 console.log('校验 ' + doc.links.length + ' 条收录项（data/links.json）');

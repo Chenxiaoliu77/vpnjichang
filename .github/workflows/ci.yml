@@ -34,3 +34,13 @@ jobs:
       - name: 校验 JSON 可解析
         run: |
           node -e "JSON.parse(require('fs').readFileSync('data/links.json','utf8')); JSON.parse(require('fs').readFileSync('data/links.schema.json','utf8')); console.log('JSON OK')"
+
+      # 步骤 4：收录链接可达性巡检
+      #
+      # 注意：巡检结果受出口 IP 影响。GitHub runner 与站点 Cloudflare 的交互结果可能
+      # 与本地不同，因此本步骤只把「确认失效」（DNS 失败 / 404 / 连接被拒 / 超时）
+      # 判为失败；403+Cloudflare 一律记为风控拦截，不判失败。
+      #
+      # --check 模式在发现域名变化（机场换域名，推广链接会直接失效）时也会判失败。
+      - name: 巡检收录链接可达性
+        run: node scripts/check-links.mjs --check

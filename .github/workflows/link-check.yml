@@ -1,0 +1,65 @@
+name: Link Check
+
+# 定期巡检收录链接的可达性。机场域名变动频繁，定期巡检能在推广链接失效前发现。
+#
+# 结果不自动写回仓库（写回需要人工确认，且 runner 出口 IP 与本地不同，
+# 自动写回会污染本地基线）。巡检报告以 artifact 形式保留 30 天，
+# 需要更新基线时在本地运行 node scripts/check-links.mjs --update。
+
+on:
+  schedule:
+    # 每周一、三、五 UTC 02:00
+    - cron: '0 2 * * 1,3,5'
+  workflow_dispatch:
+    inputs:
+      only:
+        description: '只巡检指定条目 id（留空则全部）'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: 可达性巡检
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v5
+
+      - name: 准备 Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+
+      - name: 巡检并生成报告
+        run: |
+          if [ -n "${{ inputs.only }}" ]; then
+            node scripts/check-links.mjs --only "${{ inputs.only }}" --out link-check-report.json
+          else
+            node scripts/check-links.mjs --out link-check-report.json
+          fi
+          cat link-check-report.json
+
+      - name: 保留巡检报告
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-report
+          path: link-check-report.json
+          retention-days: 30
+
+      # 巡检本身失败（确认失效）时让工作流标红。
+      # 403+Cloudflare 不会被判失败，见 scripts/check-links.mjs 的 HEALTH 字典。
+      - name: 巡检结论
+        if: always()
+        run: |
+          if [ -f link-check-report.json ]; then
+            node -e "
+            const r = JSON.parse(require('fs').readFileSync('link-check-report.json','utf8'));
+            const fatal = r.totals.fatal;
+            console.log('巡检地址数 ' + r.totals.targets + '，确认失效 ' + fatal + '，需留意 ' + r.totals.warning);
+            if (fatal > 0) { console.error('有 ' + fatal + ' 个地址确认失效'); process.exit(1); }
+            "
+          fi

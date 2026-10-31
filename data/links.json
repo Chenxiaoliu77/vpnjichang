@@ -62,6 +62,24 @@
         "finalUrl": "https://mitce.io/login?language=chinese",
         "method": "curl + read_page",
         "note": "页面可达；affiliates.php 未登录时跳转登录页，推广面板内容需登录后才可见，未做登录后核验。"
+      },
+      "probe": {
+        "checkedAt": "2026-10-31",
+        "health": "ok",
+        "httpStatus": 200,
+        "finalUrl": "https://mitce.io/login?language=chinese",
+        "finalHost": "mitce.io",
+        "hostChanged": false,
+        "detail": "HTTP 200 正常响应",
+        "backups": [
+          {
+            "url": "https://notify.mitce.net/",
+            "health": "ok",
+            "httpStatus": 200,
+            "finalUrl": "https://notify.mitce.net/",
+            "hostChanged": false
+          }
+        ]
       }
     },
     {
@@ -106,6 +124,16 @@
         "finalUrl": "https://xn--9kqs1lo79d.com/",
         "method": "curl + read_page",
         "note": "脚本访问被 Cloudflare 拦截（403 Just a moment）；read_page 渲染后确认站点为吹雪云登录落地页，8 语种切换可见。具体套餐价格未在落地页公开，需登录后查看。"
+      },
+      "probe": {
+        "checkedAt": "2026-10-31",
+        "health": "cloudflare",
+        "httpStatus": 403,
+        "finalUrl": "https://xn--9kqs1lo79d.com/",
+        "finalHost": "xn--9kqs1lo79d.com",
+        "hostChanged": false,
+        "detail": "HTTP 403，响应体含 Cloudflare 人机校验标记（脚本过不去，浏览器可正常打开）",
+        "backups": []
       }
     },
     {
@@ -176,6 +204,16 @@
         "finalUrl": "https://scgdzyy.scl168.club/",
         "method": "curl + read_page",
         "note": "站点可直接访问，套餐与邀请入口在首页与 #/shop、#/invite 路由上均可见。品牌名为「顺畅网络」，与清单名「超越网络」不一致，已在正文标注。"
+      },
+      "probe": {
+        "checkedAt": "2026-10-31",
+        "health": "ok",
+        "httpStatus": 200,
+        "finalUrl": "https://scgdzyy.scl168.club/",
+        "finalHost": "scgdzyy.scl168.club",
+        "hostChanged": false,
+        "detail": "HTTP 200 正常响应",
+        "backups": []
       }
     },
     {
@@ -227,6 +265,16 @@
         "finalUrl": "https://xn--mes358aby2apfg.com/register?code=ipPmzlHT&cover=sfw",
         "method": "curl + read_page",
         "note": "注册页可达并带 hCaptcha 校验；query 参数被服务端正常接收（重定向后仍保留 code 与 cover）。具体套餐价格需过验证码后查看，未核验。"
+      },
+      "probe": {
+        "checkedAt": "2026-10-31",
+        "health": "ok",
+        "httpStatus": 200,
+        "finalUrl": "https://xn--mes358aby2apfg.com/register?code=ipPmzlHT&cover=sfw",
+        "finalHost": "xn--mes358aby2apfg.com",
+        "hostChanged": false,
+        "detail": "HTTP 200 正常响应",
+        "backups": []
       }
     },
     {
@@ -270,6 +318,16 @@
         "finalUrl": "https://xn--4gqx1hgtfdmt.com/",
         "method": "curl + read_page",
         "note": "脚本访问被 Cloudflare 拦截（403 Just a moment）；read_page 渲染后确认站点为一分机场登录落地页，标语「最良心最便宜的机场」。套餐与协议未核验。"
+      },
+      "probe": {
+        "checkedAt": "2026-10-31",
+        "health": "cloudflare",
+        "httpStatus": 403,
+        "finalUrl": "https://xn--4gqx1hgtfdmt.com/",
+        "finalHost": "xn--4gqx1hgtfdmt.com",
+        "hostChanged": false,
+        "detail": "HTTP 403，响应体含 Cloudflare 人机校验标记（脚本过不去，浏览器可正常打开）",
+        "backups": []
       }
     },
     {
@@ -314,6 +372,16 @@
         "finalUrl": "https://xn--9kqz23b19z.com/",
         "method": "curl + read_page",
         "note": "站点可直接访问，确认标题与 8 语种切换；落地页为登录页，套餐与协议未核验。"
+      },
+      "probe": {
+        "checkedAt": "2026-10-31",
+        "health": "ok",
+        "httpStatus": 200,
+        "finalUrl": "https://xn--9kqz23b19z.com/",
+        "finalHost": "xn--9kqz23b19z.com",
+        "hostChanged": false,
+        "detail": "HTTP 200 正常响应",
+        "backups": []
       }
     },
     {
@@ -360,6 +428,24 @@
         "finalUrl": "https://a1.170809.xyz/",
         "method": "curl + read_page",
         "note": "脚本访问被 Cloudflare 拦截（403 Just a moment）；read_page 渲染后确认站点为飞鸟云登录页，并读出防失联发布页地址。套餐与协议未核验。"
+      },
+      "probe": {
+        "checkedAt": "2026-10-31",
+        "health": "cloudflare",
+        "httpStatus": 403,
+        "finalUrl": "https://a1.170809.xyz/",
+        "finalHost": "a1.170809.xyz",
+        "hostChanged": false,
+        "detail": "HTTP 403，响应体含 Cloudflare 人机校验标记（脚本过不去，浏览器可正常打开）",
+        "backups": [
+          {
+            "url": "https://github.com/feiniaoyun",
+            "health": "ok",
+            "httpStatus": 200,
+            "finalUrl": "https://github.com/feiniaoyun",
+            "hostChanged": false
+          }
+        ]
       }
     },
     {
@@ -422,6 +508,24 @@
         "finalUrl": "https://xueshan.shop/",
         "method": "curl + read_page",
         "note": "脚本访问被 Cloudflare 拦截（403 Just a moment）；read_page 渲染后完整读出首页套餐价目、节点国家、备用站点与 Telegram 联系方式。"
+      },
+      "probe": {
+        "checkedAt": "2026-10-31",
+        "health": "cloudflare",
+        "httpStatus": 403,
+        "finalUrl": "https://xueshan.shop/",
+        "finalHost": "xueshan.shop",
+        "hostChanged": false,
+        "detail": "HTTP 403，响应体含 Cloudflare 人机校验标记（脚本过不去，浏览器可正常打开）",
+        "backups": [
+          {
+            "url": "https://2023.xue-shan.com/",
+            "health": "cloudflare",
+            "httpStatus": 403,
+            "finalUrl": "https://2023.xue-shan.com/",
+            "hostChanged": false
+          }
+        ]
       }
     }
   ]
