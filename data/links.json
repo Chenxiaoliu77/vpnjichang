@@ -1,0 +1,428 @@
+{
+  "$schema": "./links.schema.json",
+  "version": 1,
+  "updatedAt": "2026-10-31",
+  "maintainer": "Chenxiaoliu77",
+  "links": [
+    {
+      "id": "mitce",
+      "name": "Mitce",
+      "nameZh": "Mitce（提供线上安全）",
+      "category": "affiliate",
+      "categoryLabel": "推广联盟入口",
+      "url": "https://mitce.io/affiliates.php",
+      "urlKind": "path-page",
+      "referralCode": null,
+      "cover": null,
+      "purpose": "Mitce 的联盟推广（affiliate）入口页：登录后查看/复制自己的推广链接与佣金结算，不是用户下单页。",
+      "description": [
+        "Mitce 的官网标语是「提供线上安全 / Provide Online Security」，本身是一家国际化的加密代理订阅服务商，主营个人/家庭订阅套餐与不限量套餐，另有面向团队的专属低风险 IP 定制。官网同时挂有节点更新公告页 https://notify.mitce.net/ 与 Telegram 群 https://t.me/Mitce_IDGAF。",
+        "收录的这一条 `affiliates.php` 是**联盟推广页**，不是订阅下单页。它位于站点登录保护范围内：未登录访问会被重定向到 https://mitce.io/login?language=chinese ，只有登录后的推广者才能看到自己的推广链接、佣金比例与结算记录。因此它的用途是「拿到推广链接去做推广分佣」，而不是「直接买套餐」。",
+        "站点公开承诺无理由退款，并在客户端弹窗提示「我们更新了节点，请更新或者重新导入URL至客户端」——即节点更新后需要重新拉取订阅 URL。"
+      ],
+      "tags": [
+        "国际站",
+        "联盟分佣",
+        "登录可见",
+        "多语言"
+      ],
+      "pricing": [
+        {
+          "plan": "订阅套餐（个人/家庭）",
+          "price": "$0.6 / 月"
+        },
+        {
+          "plan": "不限量套餐（≥10 台设备）",
+          "price": "$3 / 月"
+        },
+        {
+          "plan": "专属低风险 IP（企业定制）",
+          "price": "$10 / 月"
+        }
+      ],
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux",
+        "路由器"
+      ],
+      "protocols": [],
+      "backupUrls": [
+        "https://notify.mitce.net/"
+      ],
+      "contact": [
+        "https://t.me/Mitce_IDGAF"
+      ],
+      "verified": {
+        "checkedAt": "2026-10-31",
+        "httpStatus": 200,
+        "finalUrl": "https://mitce.io/login?language=chinese",
+        "method": "curl + read_page",
+        "note": "页面可达；affiliates.php 未登录时跳转登录页，推广面板内容需登录后才可见，未做登录后核验。"
+      }
+    },
+    {
+      "id": "chui-xue-yun",
+      "name": "吹雪云",
+      "nameZh": "吹雪云（Wind sweeps the cloud-snow）",
+      "punycodeDomain": "xn--9kqs1lo79d.com",
+      "unicodeDomain": "吹雪云.com",
+      "category": "provider",
+      "categoryLabel": "机场订阅服务商（注册深链）",
+      "url": "https://xn--9kqs1lo79d.com/#@command:register?code=o31fm0TO",
+      "urlKind": "hash-deep-link",
+      "referralCode": "o31fm0TO",
+      "cover": null,
+      "purpose": "吹雪云的客户端一键注册深链：带推广码 o31fm0TO，在支持该约定的客户端里打开即进入注册页并预填邀请码。",
+      "description": [
+        "吹雪云是一个机场订阅服务商的落地页，站点英文标语为「Wind sweeps the cloud-snow, gliding freely through the clouds」，提供简体中文 / 繁體中文 / English / 日本語 / 한국어 / Русский / Tiếng Việt / فارسی 共 8 种界面语言。",
+        "收录链接采用 `#@command:register?code=o31fm0TO` 形式，这是机场生态中的**客户端深链约定**：客户端或页面脚本读取 **hash 片段**里的 `command=register` 与 `code=o31fm0TO`，据此跳转到注册流程并预填邀请码。按 HTTP 规范（RFC 3986 §3.5）fragment 不会随请求发送给服务器，服务器只看到裸域名，推广码由前端带入注册表单。",
+        "站点部署在 Cloudflare 之后：用脚本/curl 直连会得到 `HTTP 403` 与 `Just a moment...` 浏览器校验页，必须在真实浏览器中打开。"
+      ],
+      "tags": [
+        "深链注册",
+        "带推广码",
+        "Cloudflare",
+        "8 语种"
+      ],
+      "pricing": [],
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "protocols": [],
+      "backupUrls": [],
+      "contact": [],
+      "verified": {
+        "checkedAt": "2026-10-31",
+        "httpStatus": 403,
+        "finalUrl": "https://xn--9kqs1lo79d.com/",
+        "method": "curl + read_page",
+        "note": "脚本访问被 Cloudflare 拦截（403 Just a moment）；read_page 渲染后确认站点为吹雪云登录落地页，8 语种切换可见。具体套餐价格未在落地页公开，需登录后查看。"
+      }
+    },
+    {
+      "id": "chao-yue",
+      "name": "超越网络",
+      "nameZh": "顺畅网络（超越网络同站）",
+      "punycodeDomain": null,
+      "unicodeDomain": "scgdzyy.scl168.club",
+      "category": "provider",
+      "categoryLabel": "机场订阅服务商（快速下单深链）",
+      "url": "https://scgdzyy.scl168.club/#@command:quick?code=kfSkUzXM",
+      "urlKind": "hash-deep-link",
+      "referralCode": "kfSkUzXM",
+      "cover": null,
+      "purpose": "超越网络的客户端快速下单深链：带推广码 kfSkUzXM，打开后直接进入购买流程并带上推广归因。",
+      "description": [
+        "**名称对照提醒**：清单条目写作「超越网络」，但该站点当前对外品牌是**顺畅网络**——页面标题与导航均为「顺畅网络」，两者指向同一个站点 `scgdzyy.scl168.club`。",
+        "顺畅网络是面向大陆用户的高速网络加速服务商，主打 38 组服务器集群、32 个国家/地区节点、30+ 高速节点，全平台覆盖（iOS / macOS / Android / Windows / 路由器 / Linux），宣称解锁 YouTube、Google、Facebook、Instagram、Twitter、ChatGPT、Telegram 等，7×24 小时专线客服。",
+        "链接使用 `#@command:quick?code=kfSkUzXM`。`quick` 是「快速下单」命令（区别于 `register` 的「注册」命令），客户端读取 hash 中的 `command=quick` 与推广码后直接进入购买流程；fragment 不会发送到服务器。站点是单页应用（SPA），全部路由以 `#` 开头：`#/dashboard`（我的面板）、`#/shop`（购买套餐）、`#/invite`（我的邀请）、`#/profile`（账号设置）——邀请返佣体系由前端路由驱动。",
+        "页面公示套餐：测试包月 ¥10 / 128G；基础包月 ¥11 / 500G；标准包月 ¥16 / 1000G；进阶包月 ¥25 / 2000G；专线定制 ¥900 / 9999G。年付档 ¥20.99(128G)、¥39.99(380G)、¥88(660G)、¥130.99(1100G)、¥180(2100G)，另有季付 ¥32 / 半年 ¥66 的周期选项。付款方式含微信支付。"
+      ],
+      "tags": [
+        "深链下单",
+        "带推广码",
+        "有邀请返佣",
+        "多套餐"
+      ],
+      "pricing": [
+        {
+          "plan": "测试包月",
+          "price": "¥10 / 月（128G）"
+        },
+        {
+          "plan": "基础包月",
+          "price": "¥11 / 月（500G）"
+        },
+        {
+          "plan": "标准包月",
+          "price": "¥16 / 月（1000G）"
+        },
+        {
+          "plan": "进阶包月",
+          "price": "¥25 / 月（2000G）"
+        },
+        {
+          "plan": "专线定制",
+          "price": "¥900 / 月（9999G）"
+        },
+        {
+          "plan": "至尊包年",
+          "price": "¥180 / 年（2100G）"
+        }
+      ],
+      "platforms": [
+        "iOS",
+        "macOS",
+        "Android",
+        "Windows",
+        "Linux",
+        "路由器"
+      ],
+      "protocols": [],
+      "backupUrls": [],
+      "contact": [],
+      "verified": {
+        "checkedAt": "2026-10-31",
+        "httpStatus": 200,
+        "finalUrl": "https://scgdzyy.scl168.club/",
+        "method": "curl + read_page",
+        "note": "站点可直接访问，套餐与邀请入口在首页与 #/shop、#/invite 路由上均可见。品牌名为「顺畅网络」，与清单名「超越网络」不一致，已在正文标注。"
+      }
+    },
+    {
+      "id": "pei-qian",
+      "name": "赔钱机场",
+      "nameZh": "赔钱机场（超便宜低价高速机场）",
+      "punycodeDomain": "xn--mes358aby2apfg.com",
+      "unicodeDomain": "赔钱机场.com",
+      "category": "provider",
+      "categoryLabel": "机场订阅服务商（服务端注册链接）",
+      "url": "https://xn--mes358aby2apfg.com/register?code=ipPmzlHT&cover=sfw",
+      "urlKind": "path-referral",
+      "referralCode": "ipPmzlHT",
+      "cover": "sfw",
+      "purpose": "赔钱机场的注册链接：推广码与渠道标记放在服务端可见的 query 上，服务器能直接记录邀请关系与来源渠道。",
+      "description": [
+        "赔钱机场（`xn--mes358aby2apfg.com` → 「赔钱机场.com」）自我定位为「超便宜低价高速机场」，是标准机场面板站。首页源码同时出现 Clash / Shadowrocket / Stash / v2rayN / sing-box 等客户端标识，以及订阅、套餐、推广、佣金、邀请、到期、节点、Trojan / VLESS / Hysteria2 等面板词条。",
+        "这条链接与其它几条的关键差别是：**推广码放在 URL 路径的 query 上**（`/register?code=ipPmzlHT&cover=sfw`），服务器能直接收到 `code` 与 `cover`，不依赖前端 hash 解析——这是最稳的一种推广链接写法，统计口径不受浏览器行为影响。",
+        "`cover=sfw` 是面板的**渠道/落地页来源标记**（sfw 即所选渠道缩写），用于标识本次注册从哪个推广位进入，便于按渠道拆分转化与结算。",
+        "注册需通过 hCaptcha 人机验证，账号体系支持 Email 登录 + OTP/2FA，界面提供简体中文 / English / 日本語 / 한국어 / Русский / Tiếng Việt / فارسی。"
+      ],
+      "tags": [
+        "服务端推广码",
+        "含渠道标记",
+        "hCaptcha 验证",
+        "多语种"
+      ],
+      "pricing": [],
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "protocols": [
+        "Clash",
+        "Shadowrocket",
+        "Stash",
+        "v2rayN",
+        "sing-box"
+      ],
+      "backupUrls": [],
+      "contact": [],
+      "verified": {
+        "checkedAt": "2026-10-31",
+        "httpStatus": 200,
+        "finalUrl": "https://xn--mes358aby2apfg.com/register?code=ipPmzlHT&cover=sfw",
+        "method": "curl + read_page",
+        "note": "注册页可达并带 hCaptcha 校验；query 参数被服务端正常接收（重定向后仍保留 code 与 cover）。具体套餐价格需过验证码后查看，未核验。"
+      }
+    },
+    {
+      "id": "yi-fen",
+      "name": "一分机场",
+      "nameZh": "一分机场（最良心最便宜的机场）",
+      "punycodeDomain": "xn--4gqx1hgtfdmt.com",
+      "unicodeDomain": "一分机场.com",
+      "category": "provider",
+      "categoryLabel": "机场订阅服务商（注册深链）",
+      "url": "https://xn--4gqx1hgtfdmt.com/#@command:register?code=07WGOzhp",
+      "urlKind": "hash-deep-link",
+      "referralCode": "07WGOzhp",
+      "cover": null,
+      "purpose": "一分机场的客户端注册深链：带推广码 07WGOzhp，打开即进入注册流程并预填邀请码。",
+      "description": [
+        "一分机场的落地页标语是「最良心最便宜的机场」，首页提供「登入 / 注册 / 忘记密码」入口，站点部署在 Cloudflare 之后（脚本直连返回 403 浏览器校验页）。",
+        "收录链接使用 `#@command:register?code=07WGOzhp` 深链约定：客户端读取 hash 中的 `command=register` 与 `code=07WGOzhp`，直接进入注册流程并预填邀请码；fragment 按 HTTP 规范不会发送到服务器。",
+        "套餐价格与客户端支持情况未在公开落地页展示，需在浏览器中登录后查看——本条不做推测性描述。"
+      ],
+      "tags": [
+        "深链注册",
+        "带推广码",
+        "Cloudflare"
+      ],
+      "pricing": [],
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "protocols": [],
+      "backupUrls": [],
+      "contact": [],
+      "verified": {
+        "checkedAt": "2026-10-31",
+        "httpStatus": 403,
+        "finalUrl": "https://xn--4gqx1hgtfdmt.com/",
+        "method": "curl + read_page",
+        "note": "脚本访问被 Cloudflare 拦截（403 Just a moment）；read_page 渲染后确认站点为一分机场登录落地页，标语「最良心最便宜的机场」。套餐与协议未核验。"
+      }
+    },
+    {
+      "id": "liang-xin",
+      "name": "良心云",
+      "nameZh": "良心云（四网高可靠性互联）",
+      "punycodeDomain": "xn--9kqz23b19z.com",
+      "unicodeDomain": "良心云.com",
+      "category": "provider",
+      "categoryLabel": "机场订阅服务商（注册深链）",
+      "url": "https://xn--9kqz23b19z.com/#@command:register?code=LMX0Y0MR",
+      "urlKind": "hash-deep-link",
+      "referralCode": "LMX0Y0MR",
+      "cover": null,
+      "purpose": "良心云的客户端注册深链：带推广码 LMX0Y0MR，用于拉新注册与佣金归因。",
+      "description": [
+        "良心云（`xn--9kqz23b19z.com` → 「良心云.com」）的站点标题是「良心云 最良心的高性价比机场，四网高可靠性互联，极致的响应速度！」，英文标语为「Explore Unlimited Possibilities of Global Network」。",
+        "界面提供简体中文 / 繁體中文 / English / 日本語 / 한국어 / Русский / Tiếng Việt / فارسی 共 8 种语言，落地页为登录页（Scroll down to sign in）。",
+        "收录链接使用 `#@command:register?code=LMX0Y0MR` 深链约定，推广码由客户端/前端从 hash 读取后带入注册流程；fragment 不会发送到服务器。",
+        "「四网高可靠性互联」是站点自述的线路卖点，具体节点数、协议与套餐价格需登录后查看，本条不做推测。"
+      ],
+      "tags": [
+        "深链注册",
+        "带推广码",
+        "8 语种"
+      ],
+      "pricing": [],
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "protocols": [],
+      "backupUrls": [],
+      "contact": [],
+      "verified": {
+        "checkedAt": "2026-10-31",
+        "httpStatus": 200,
+        "finalUrl": "https://xn--9kqz23b19z.com/",
+        "method": "curl + read_page",
+        "note": "站点可直接访问，确认标题与 8 语种切换；落地页为登录页，套餐与协议未核验。"
+      }
+    },
+    {
+      "id": "fei-niao",
+      "name": "飞鸟云",
+      "nameZh": "飞鸟云",
+      "punycodeDomain": null,
+      "unicodeDomain": "a1.170809.xyz",
+      "category": "provider",
+      "categoryLabel": "机场订阅服务商（注册深链）",
+      "url": "https://a1.170809.xyz/#@command:register?code=gKpZwtHV",
+      "urlKind": "hash-deep-link",
+      "referralCode": "gKpZwtHV",
+      "cover": null,
+      "purpose": "飞鸟云的客户端注册深链：带推广码 gKpZwtHV；同时收录其 GitHub 防失联发布页作为备用入口。",
+      "description": [
+        "飞鸟云是一个机场订阅服务商。首页标注「有问题请给官网右下角客服留言，看到会尽快回复」，并给出**防失联发布页** https://github.com/feiniaoyun —— 这是机场行业常见的「发布页」惯例：域名被封或 DNS 被污染时，通过 GitHub 仓库获取最新可用入口。",
+        "收录链接使用 `a1.170809.xyz` 这一子域名入口，`#@command:register?code=gKpZwtHV` 深链带推广码 `gKpZwtHV`；fragment 不会发送到服务器。",
+        "站点部署在 Cloudflare 之后（脚本直连返回 403 浏览器校验页），具体套餐、协议与节点数需在浏览器中查看，本条不做推测。"
+      ],
+      "tags": [
+        "深链注册",
+        "带推广码",
+        "Cloudflare",
+        "含防失联发布页"
+      ],
+      "pricing": [],
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "protocols": [],
+      "backupUrls": [
+        "https://github.com/feiniaoyun"
+      ],
+      "contact": [],
+      "verified": {
+        "checkedAt": "2026-10-31",
+        "httpStatus": 403,
+        "finalUrl": "https://a1.170809.xyz/",
+        "method": "curl + read_page",
+        "note": "脚本访问被 Cloudflare 拦截（403 Just a moment）；read_page 渲染后确认站点为飞鸟云登录页，并读出防失联发布页地址。套餐与协议未核验。"
+      }
+    },
+    {
+      "id": "xue-shan",
+      "name": "雪山",
+      "nameZh": "雪山·Link",
+      "punycodeDomain": null,
+      "unicodeDomain": "xueshan.shop",
+      "category": "provider",
+      "categoryLabel": "机场订阅服务商（注册深链）",
+      "url": "https://xueshan.shop/#@command:register?code=jLNcxk7c",
+      "urlKind": "hash-deep-link",
+      "referralCode": "jLNcxk7c",
+      "cover": null,
+      "purpose": "雪山·Link 的客户端注册深链：带推广码 jLNcxk7c，用于拉新与佣金归因。",
+      "description": [
+        "雪山·Link（`xueshan.shop`）是主打高速专线与流媒体解锁的机场订阅服务商，宣称「无限制畅享全球网络加速」、单线接入带宽高达 10000Mbps、全球 100+ 台高速服务器。节点覆盖中国香港/台湾、日本、韩国、新加坡、泰国、越南、马来西亚、美国、德国、英国、法国、西班牙、荷兰、澳大利亚、俄罗斯等；功能卖点包括流媒体全解锁、隧道加密、全终端支持、永不断线。",
+        "收录链接使用 `#@command:register?code=jLNcxk7c` 深链约定，推广码 `jLNcxk7c` 由客户端/前端从 hash 读取。",
+        "页面公示套餐：Basis 基础套餐 ¥9.9/月（500G/月，每月重置，限速 1000Mbps）；Standard 高级套餐 ¥15.9/月（1000G/月，限速 2000Mbps）；Premium 旗舰套餐 ¥79.9/月（10000G/月，限速 3000Mbps，含流媒体解锁），均支持年付立减。",
+        "备用站点 https://2023.xue-shan.com/ ；Telegram 群与客服 https://t.me/xueshan0001 。面板为 SPA 路由：`#/dashboard`（我的面板）、`#/shop`（购买套餐）、`#/knowledge`（使用教程）。"
+      ],
+      "tags": [
+        "深链注册",
+        "带推广码",
+        "套餐价目公开",
+        "含备用站点"
+      ],
+      "pricing": [
+        {
+          "plan": "Basis 基础套餐",
+          "price": "¥9.9 / 月（500G，限速 1000Mbps）"
+        },
+        {
+          "plan": "Standard 高级套餐",
+          "price": "¥15.9 / 月（1000G，限速 2000Mbps）"
+        },
+        {
+          "plan": "Premium 旗舰套餐",
+          "price": "¥79.9 / 月（10000G，限速 3000Mbps）"
+        }
+      ],
+      "platforms": [
+        "Web",
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "protocols": [],
+      "backupUrls": [
+        "https://2023.xue-shan.com/"
+      ],
+      "contact": [
+        "https://t.me/xueshan0001"
+      ],
+      "verified": {
+        "checkedAt": "2026-10-31",
+        "httpStatus": 403,
+        "finalUrl": "https://xueshan.shop/",
+        "method": "curl + read_page",
+        "note": "脚本访问被 Cloudflare 拦截（403 Just a moment）；read_page 渲染后完整读出首页套餐价目、节点国家、备用站点与 Telegram 联系方式。"
+      }
+    }
+  ]
+}

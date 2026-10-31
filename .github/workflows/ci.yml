@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: 校验清单与文档一致性
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 准备 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 步骤 1：清单结构与自洽性校验（详见 scripts/validate-links.mjs）
+      - name: 校验 data/links.json
+        run: node scripts/validate-links.mjs
+
+      # 步骤 2：README 的清单区块必须与 data/links.json 渲染结果一致
+      - name: 校验 README 渲染一致性
+        run: node scripts/render-readme.mjs --check
+
+      # 步骤 3：JSON 必须可被标准解析器读取
+      - name: 校验 JSON 可解析
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('data/links.json','utf8')); JSON.parse(require('fs').readFileSync('data/links.schema.json','utf8')); console.log('JSON OK')"
