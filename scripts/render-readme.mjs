@@ -98,6 +98,16 @@ function replaceBlock(text, name, body) {
 }
 
 let readme = readFileSync(README, 'utf8');
+
+// 最后更新徽章：由 data/links.json 的 updatedAt 渲染，避免手写日期与数据脱节
+const badgeRe = /^\[!\[Last update\]\([^)]*\)\]\([^)]*\)\s*$/m;
+const badge = '[![' + 'Last update](https://img.shields.io/badge/last%20update-' +
+  doc.updatedAt.replace(/-/g, '--') + '-informational)](data/links.json)';
+if (!badgeRe.test(readme)) {
+  console.error('README.md 缺少 Last update 徽章');
+  process.exit(2);
+}
+readme = readme.replace(badgeRe, badge);
 readme = replaceBlock(readme, 'LINKS_TABLE', renderTable());
 readme = replaceBlock(readme, 'LINKS_DETAILS', renderDetails());
 
