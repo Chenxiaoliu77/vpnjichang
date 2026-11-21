@@ -4,7 +4,7 @@
 > 本仓库是一个「索引型」项目：收录各大机场/代理服务商的**推广（推荐）入口**，记录每条地址的用途、参数含义与核验状态。
 
 [![CI](https://github.com/Chenxiaoliu77/vpnjichang/actions/workflows/ci.yml/badge.svg)](https://github.com/Chenxiaoliu77/vpnjichang/actions/workflows/ci.yml)
-[![Last update](https://img.shields.io/badge/last%20update-2026--10--31-informational)](data/links.json)
+[![Last update](https://img.shields.io/badge/last%20update-2026--11--21-informational)](data/links.json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
@@ -42,6 +42,7 @@
 | 6 | 良心云 | 机场订阅服务商（注册深链） | 客户端深链（hash） | `LMX0Y0MR` | — | — | ✅ 可达 |
 | 7 | 飞鸟云 | 机场订阅服务商（注册深链） | 客户端深链（hash） | `gKpZwtHV` | — | [备用](https://github.com/feiniaoyun) | 🛡 风控拦截 |
 | 8 | 雪山 | 机场订阅服务商（注册深链） | 客户端深链（hash） | `jLNcxk7c` | — | [备用](https://2023.xue-shan.com/) | 🛡 风控拦截 |
+| 9 | 月兔 | 机场订阅服务商（官网入口） | 站内页面 | — | — | — | ✅ 可达 |
 <!-- END:LINKS_TABLE -->
 
 ---
@@ -252,6 +253,28 @@
 > **自动巡检**（2026-10-31，scripts/check-links.mjs）：🛡 风控拦截（HTTP 403）。HTTP 403，响应体含 Cloudflare 人机校验标记（脚本过不去，浏览器可正常打开）
 >
 > - 备用入口 https://2023.xue-shan.com/：🛡 风控拦截（HTTP 403）
+
+---
+
+### 9. 月兔 — 月兔 VPN（Tsuki）
+
+- **收录地址**：<https://buddahs-temptation.win/tsuki>
+- **类型**：机场订阅服务商（官网入口）（链接形式：站内页面）
+- **域名**：`buddahs-temptation.win`
+- **用途**：月兔 VPN（Tsuki）的官网入口：地址无推广参数，打开后进入邮箱登录页，登录后购买与管理代理订阅。
+- **标签**：`官网入口` `邮箱注册` `无推广参数` `登录后购买`
+- **支持平台**：iOS、Android、Windows、macOS
+- **客户端/协议标识**：`Shadowrocket` `Hiddify` `Clash Meta` `Clash Verge`
+
+**说明**
+
+- 月兔 VPN（Tsuki）按流量和有效期提供代理订阅，兼容 iPhone / iPad、安卓、Windows 与 Mac。
+- 收录地址为官网入口，URL 不含推广码或渠道参数。访问后进入登录页，使用邮箱注册或登录。
+- 登录后可购买、续订，并管理订阅链接、剩余流量与到期时间。iPhone / iPad 可使用 Shadowrocket 或 Hiddify，安卓可使用 Clash Meta，Windows 与 Mac 可使用 Clash Verge；第三方客户端费用不包含在订阅中。
+
+> 核验记录（2026-11-21，curl -L）：HTTP 200 → https://buddahs-temptation.win/tsuki/login。访问 /tsuki 依次返回 302、308，最终 HTTP 200 至 /tsuki/login；页面为邮箱登录与注册，地址无推广参数。
+>
+> **自动巡检**（2026-11-21，scripts/check-links.mjs）：✅ 可达（HTTP 200）。HTTP 200 正常响应
 
 <!-- END:LINKS_DETAILS -->
 
