@@ -1,7 +1,7 @@
 {
   "$schema": "./links.schema.json",
   "version": 1,
-  "updatedAt": "2026-10-31",
+  "updatedAt": "2026-11-21",
   "maintainer": "Chenxiaoliu77",
   "links": [
     {
@@ -526,6 +526,63 @@
             "hostChanged": false
           }
         ]
+      }
+    },
+    {
+      "id": "yue-tu",
+      "name": "月兔",
+      "nameZh": "月兔 VPN（Tsuki）",
+      "punycodeDomain": null,
+      "unicodeDomain": "buddahs-temptation.win",
+      "category": "provider",
+      "categoryLabel": "机场订阅服务商（官网入口）",
+      "url": "https://buddahs-temptation.win/tsuki",
+      "urlKind": "path-page",
+      "referralCode": null,
+      "cover": null,
+      "purpose": "月兔 VPN（Tsuki）的官网入口：地址无推广参数，打开后进入邮箱登录页，登录后购买与管理代理订阅。",
+      "description": [
+        "月兔 VPN（Tsuki）按流量和有效期提供代理订阅，兼容 iPhone / iPad、安卓、Windows 与 Mac。",
+        "收录地址为官网入口，URL 不含推广码或渠道参数。访问后进入登录页，使用邮箱注册或登录。",
+        "登录后可购买、续订，并管理订阅链接、剩余流量与到期时间。iPhone / iPad 可使用 Shadowrocket 或 Hiddify，安卓可使用 Clash Meta，Windows 与 Mac 可使用 Clash Verge；第三方客户端费用不包含在订阅中。"
+      ],
+      "tags": [
+        "官网入口",
+        "邮箱注册",
+        "无推广参数",
+        "登录后购买"
+      ],
+      "pricing": [],
+      "platforms": [
+        "iOS",
+        "Android",
+        "Windows",
+        "macOS"
+      ],
+      "protocols": [
+        "Shadowrocket",
+        "Hiddify",
+        "Clash Meta",
+        "Clash Verge"
+      ],
+      "backupUrls": [],
+      "contact": [],
+      "verified": {
+        "checkedAt": "2026-11-21",
+        "httpStatus": 200,
+        "finalUrl": "https://buddahs-temptation.win/tsuki/login",
+        "method": "curl -L",
+        "note": "访问 /tsuki 依次返回 302、308，最终 HTTP 200 至 /tsuki/login；页面为邮箱登录与注册，地址无推广参数。"
+      },
+      "probe": {
+        "checkedAt": "2026-11-21",
+        "health": "ok",
+        "httpStatus": 200,
+        "finalUrl": "https://buddahs-temptation.win/tsuki/login",
+        "finalHost": "buddahs-temptation.win",
+        "hostChanged": false,
+        "detail": "HTTP 200 正常响应",
+        "backups": []
       }
     }
   ]
